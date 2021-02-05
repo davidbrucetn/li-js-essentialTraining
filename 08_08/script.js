@@ -8,15 +8,26 @@
  * @link http://www.lingoes.net/en/translator/langcode.htm
  */
 
-const tipCalculator = (sum, percentage) => {
+//2020/02/05 David Bruce
+
+const formatter = (locale, currency, value) => {
+  let formattedValue = new Intl.NumberFormat('de-DE',
+    {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(value)
+  return formattedValue
+}
+
+const tipCalculator = (sum, percentage, locale, currency) => {
   let tip = sum * (percentage / 100);
   let total = sum + tip;
   console.log(`
-      Sum before tip: ${sum}
+      Sum before tip: ${formatter(locale, currency, sum)}
       Tip percentage: ${percentage}%
-      Tip:            ${tip.toFixed(2)}
-      Total:          ${total.toFixed(2)}
+      Tip:            ${formatter(locale, currency, tip.toFixed(2))}
+      Total:          ${formatter(locale, currency, total.toFixed(2))}
     `);
 };
 
-tipCalculator(29.95, 18);
+tipCalculator(29.95, 18, "de-DE", "EUR");

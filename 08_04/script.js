@@ -10,6 +10,9 @@ const greenPack = {
   pocketNum: 3,
 };
 
+//with one parameter - parentheses aren't required but prettier extension will put them back 
+// const addPack = currentPack => {
+
 const addPack = (currentPack) => {
   const newArticle = document.createElement("article");
   newArticle.innerHTML = `

@@ -23,5 +23,8 @@ const addPack = function (currentPack) {
   return newArticle;
 };
 
+//2020/02/05 David Bruce
+const theArticle = addPack(greenPack);
+console.log(theArticle);
 const main = document.querySelector("main");
 main.append(addPack(greenPack));
