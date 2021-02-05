@@ -16,9 +16,15 @@ const greenPack = {
     console.log("this.volume in the method:", this.volume);
     this.volume = volume;
     console.log("this.volume after update:", this.volume);
-    // (function () {
-    //   console.log("this.volume in nested function:", this.volume);
-    // })();
+    // 2020/02/15 David Bruce
+    // The Immediately Invoked Function Expression will use the global scope
+    (function () {
+      console.log("this.volume in nested function:", this.volume);
+    })();
+    // The arrow will use the local scope
+    (() => {
+      console.log("this.volume in nested function:", this.volume);
+    })();
   },
 };
 
