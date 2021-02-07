@@ -38,7 +38,7 @@ const printHTML = (finalTip) => {
 };
 
 // Create a finalTip object with all the data. Send it to the printHTML callback.
-const tipCalculator = (sum, percentage, locale, currency) => {
+const tipCalculator = (sum, percentage, locale, currency, callback) => {
   let tip = sum * (percentage / 100);
   let total = sum + tip;
 
@@ -48,6 +48,12 @@ const tipCalculator = (sum, percentage, locale, currency) => {
     tip: formatter(locale, currency, tip),
     total: formatter(locale, currency, total),
   };
+  // 2020/02/07 David - 
+  // 2) printHTML is being run inside w/o passing values outside of tipCalculator
+  callback(finalTip)
 };
 
-tipCalculator(29.95, 18, "de-DE", "EUR");
+
+// 2020/02/07 David - 1)                  printHTML w/o parentheses is passing the entire function to tipCalculator 
+// This is used in the event you may want to use different callback functions in lieu of printHTML
+tipCalculator(29.95, 18, "de-DE", "EUR", printHTML);

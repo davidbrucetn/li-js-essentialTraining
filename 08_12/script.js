@@ -24,25 +24,19 @@ const content = `
     </figure>
     <h1 class="backpack__name">${everydayPack.name}</h1>
     <ul class="backpack__features">
-      <li class="feature backpack__volume">Volume:<span> ${
-        everydayPack.volume
-      }l</span></li>
-      <li class="feature backpack__color">Color:<span> ${
-        everydayPack.color
-      }</span></li>
+      <li class="feature backpack__volume">Volume:<span> ${everydayPack.volume
+  }l</span></li>
+      <li class="feature backpack__color">Color:<span> ${everydayPack.color
+  }</span></li>
       <li class="feature backpack__age">Age:<span> ${everydayPack.backpackAge()} days old</span></li>
-      <li class="feature backpack__pockets">Number of pockets:<span> ${
-        everydayPack.pocketNum
-      }</span></li>
-      <li class="feature backpack__strap">Left strap length:<span> ${
-        everydayPack.strapLength.left
-      } inches</span></li>
-      <li class="feature backpack__strap">Right strap length:<span> ${
-        everydayPack.strapLength.right
-      } inches</span></li>
-      <li class="feature backpack__lid">Lid status:<span> ${
-        everydayPack.lidOpen ? "open" : "closed"
-      }</span></li>
+      <li class="feature backpack__pockets">Number of pockets:<span> ${everydayPack.pocketNum
+  }</span></li>
+      <li class="feature backpack__strap">Left strap length:<span> ${everydayPack.strapLength.left
+  } inches</span></li>
+      <li class="feature backpack__strap">Right strap length:<span> ${everydayPack.strapLength.right
+  } inches</span></li>
+      <li class="feature backpack__lid">Lid status:<span> ${everydayPack.lidOpen ? "open" : "closed"
+  }</span></li>
     </ul>
   `;
 
@@ -59,4 +53,18 @@ if (everydayPack.backpackAge() >= 30) {
   console.log("Backpack is used")
 } else {
   console.log("Backpack is new")
+}
+
+//                    Logical And
+if (everydayPack.volue > 15 && everydayPack.pocketNum >= 5) {
+  console.log("Backpack is large")
+} else {
+  console.log("Backpack is small")
+}
+
+//                      Logical Or
+if (everydayPack.volue > 15 || everydayPack.pocketNum >= 5) {
+  console.log("Backpack is large")
+} else {
+  console.log("Backpack is small")
 }
