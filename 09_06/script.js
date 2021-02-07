@@ -11,18 +11,18 @@ import backpackObjectArray from "./components/data.js";
 const lidToggle = function (event, button, newArg) {
   console.log(event)
   console.log(newArg)
-   
+
   // Find the current backpack object in backpackObjectArray
-  let backpackObject = backpackObjectArray.find( ({ id }) => id === button.parentElement.id );
-  
+  let backpackObject = backpackObjectArray.find(({ id }) => id === button.parentElement.id);
+
   // Toggle lidOpen status
-  backpackObject.lidOpen == true 
-    ? backpackObject.lidOpen = false 
+  backpackObject.lidOpen == true
+    ? backpackObject.lidOpen = false
     : backpackObject.lidOpen = true;
 
   // Toggle button text
-  button.innerText == "Open lid" 
-    ? button.innerText = "Close lid" 
+  button.innerText == "Open lid"
+    ? button.innerText = "Close lid"
     : button.innerText = "Open lid";
 
   // Set visible property status text
@@ -44,36 +44,33 @@ const backpackList = backpackObjectArray.map((backpack) => {
     </figure>
     <h1 class="backpack__name">${backpack.name}</h1>
     <ul class="backpack__features">
-      <li class="feature backpack__volume">Volume:<span> ${
-        backpack.volume
-      }l</span></li>
-      <li class="feature backpack__color">Color:<span> ${
-        backpack.color
-      }</span></li>
+      <li class="feature backpack__volume">Volume:<span> ${backpack.volume
+    }l</span></li>
+      <li class="feature backpack__color">Color:<span> ${backpack.color
+    }</span></li>
       <li class="feature backpack__age">Age:<span> ${backpack.backpackAge()} days old</span></li>
-      <li class="feature backpack__pockets">Number of pockets:<span> ${
-        backpack.pocketNum
-      }</span></li>
-      <li class="feature backpack__strap">Left strap length:<span> ${
-        backpack.strapLength.left
-      } inches</span></li>
-      <li class="feature backpack__strap">Right strap length:<span> ${
-        backpack.strapLength.right
-      } inches</span></li>
-      <li class="feature backpack__lid">Lid status: <span>${
-        backpack.lidOpen ? "open" : "closed"
-      }</span></li>
+      <li class="feature backpack__pockets">Number of pockets:<span> ${backpack.pocketNum
+    }</span></li>
+      <li class="feature backpack__strap">Left strap length:<span> ${backpack.strapLength.left
+    } inches</span></li>
+      <li class="feature backpack__strap">Right strap length:<span> ${backpack.strapLength.right
+    } inches</span></li>
+      <li class="feature backpack__lid">Lid status: <span>${backpack.lidOpen ? "open" : "closed"
+    }</span></li>
     </ul>
     <button class="lid-toggle">Open lid</button>
   `;
-  
+
   let button = backpackArticle.querySelector(".lid-toggle");
   let newArg = "The argument I want to pass to the callback function!"
 
   // Add event listener
+  //2020/02/07 David Bruce, passing event, button, and other arguments to callback function
   button.addEventListener("click", (event) => {
     lidToggle(event, button, newArg)
   })
+
+
 
   return backpackArticle;
 });

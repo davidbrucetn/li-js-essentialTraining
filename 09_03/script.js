@@ -3,6 +3,17 @@
  * @link https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
  * @link https://developer.mozilla.org/en-US/docs/Web/Events
  */
+
+// 2020/02/07 David Bruce Notes:
+//                        event,  function call, options object for adv features, usually false or blank
+//target.addEventListener(target, callback [, options]);
+//  button.addEventListener(
+//     "click",
+//     (e) => {
+//       console.log(`Event fired: ${e}`);
+//     }
+// );
+
 import backpackObjectArray from "./components/data.js";
 
 const backpackList = backpackObjectArray.map((backpack) => {
@@ -16,29 +27,29 @@ const backpackList = backpackObjectArray.map((backpack) => {
     </figure>
     <h1 class="backpack__name">${backpack.name}</h1>
     <ul class="backpack__features">
-      <li class="feature backpack__volume">Volume:<span> ${
-        backpack.volume
-      }l</span></li>
-      <li class="feature backpack__color">Color:<span> ${
-        backpack.color
-      }</span></li>
+      <li class="feature backpack__volume">Volume:<span> ${backpack.volume
+    }l</span></li>
+      <li class="feature backpack__color">Color:<span> ${backpack.color
+    }</span></li>
       <li class="feature backpack__age">Age:<span> ${backpack.backpackAge()} days old</span></li>
-      <li class="feature backpack__pockets">Number of pockets:<span> ${
-        backpack.pocketNum
-      }</span></li>
-      <li class="feature backpack__strap">Left strap length:<span> ${
-        backpack.strapLength.left
-      } inches</span></li>
-      <li class="feature backpack__strap">Right strap length:<span> ${
-        backpack.strapLength.right
-      } inches</span></li>
-      <li class="feature backpack__lid">Lid status: <span>${
-        backpack.lidOpen ? "open" : "closed"
-      }</span></li>
+      <li class="feature backpack__pockets">Number of pockets:<span> ${backpack.pocketNum
+    }</span></li>
+      <li class="feature backpack__strap">Left strap length:<span> ${backpack.strapLength.left
+    } inches</span></li>
+      <li class="feature backpack__strap">Right strap length:<span> ${backpack.strapLength.right
+    } inches</span></li>
+      <li class="feature backpack__lid">Lid status: <span>${backpack.lidOpen ? "open" : "closed"
+    }</span></li>
     </ul>
     <button class="lid-toggle">Open lid</button>
   `;
 
+  const button = backpackArticle.querySelector(".lid-toggle");
+  const status = backpackArticle.querySelector("li.backpack__lid span")
+  button.addEventListener("click", (e) => {
+    // console.log("Button event", e);
+    status.innerText === "open" ? status.innerText = "closed" : status.innerText = "open"
+  })
   return backpackArticle;
 });
 
