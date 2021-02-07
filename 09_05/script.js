@@ -9,18 +9,19 @@ import backpackObjectArray from "./components/data.js";
  * Add event listener to the lid-toggle button.
  */
 const lidToggle = function () {
-   
+
   // Find the current backpack object in backpackObjectArray
-  let backpackObject = backpackObjectArray.find( ({ id }) => id === this.parentElement.id );
-  
+  // 2020/02/07 David Bruce --------------------get article id that matches button parent
+  let backpackObject = backpackObjectArray.find(({ id }) => id === this.parentElement.id);
+
   // Toggle lidOpen status
-  backpackObject.lidOpen == true 
-    ? backpackObject.lidOpen = false 
+  backpackObject.lidOpen == true
+    ? backpackObject.lidOpen = false
     : backpackObject.lidOpen = true;
 
   // Toggle button text
-  this.innerText == "Open lid" 
-    ? this.innerText = "Close lid" 
+  this.innerText == "Open lid"
+    ? this.innerText = "Close lid"
     : this.innerText = "Open lid";
 
   // Set visible property status text
@@ -46,25 +47,19 @@ const backpackList = backpackObjectArray.map((backpack) => {
     </figure>
     <h1 class="backpack__name">${backpack.name}</h1>
     <ul class="backpack__features">
-      <li class="feature backpack__volume">Volume:<span> ${
-        backpack.volume
-      }l</span></li>
-      <li class="feature backpack__color">Color:<span> ${
-        backpack.color
-      }</span></li>
+      <li class="feature backpack__volume">Volume:<span> ${backpack.volume
+    }l</span></li>
+      <li class="feature backpack__color">Color:<span> ${backpack.color
+    }</span></li>
       <li class="feature backpack__age">Age:<span> ${backpack.backpackAge()} days old</span></li>
-      <li class="feature backpack__pockets">Number of pockets:<span> ${
-        backpack.pocketNum
-      }</span></li>
-      <li class="feature backpack__strap">Left strap length:<span> ${
-        backpack.strapLength.left
-      } inches</span></li>
-      <li class="feature backpack__strap">Right strap length:<span> ${
-        backpack.strapLength.right
-      } inches</span></li>
-      <li class="feature backpack__lid">Lid status: <span>${
-        backpack.lidOpen ? "open" : "closed"
-      }</span></li>
+      <li class="feature backpack__pockets">Number of pockets:<span> ${backpack.pocketNum
+    }</span></li>
+      <li class="feature backpack__strap">Left strap length:<span> ${backpack.strapLength.left
+    } inches</span></li>
+      <li class="feature backpack__strap">Right strap length:<span> ${backpack.strapLength.right
+    } inches</span></li>
+      <li class="feature backpack__lid">Lid status: <span>${backpack.lidOpen ? "open" : "closed"
+    }</span></li>
     </ul>
     <button class="lid-toggle">Open lid</button>
   `;
@@ -72,13 +67,24 @@ const backpackList = backpackObjectArray.map((backpack) => {
   const button = backpackArticle.querySelector(".lid-toggle")
   const status = backpackArticle.querySelector(".backpack__lid span")
 
-  button.addEventListener("click", (event) => {
-    console.log(event)
-    status.innerText === "open" ? status.innerText = "closed" : status.innerText = "open"
-  })
+  // 2020/02/07 David Bruce for use of "this" you need to use function declaration.
+  //   button.addEventListener("click", function (event) {
+  //     console.log(event)
+  //     this.innerText === "Open Lid" ? this.innerText = "Close Lid" : this.innerText = "Open Lid"
+  //     status.innerText === "open" ? status.innerText = "closed" : status.innerText = "open"
+
+  //   })
+
+  //   return backpackArticle;
+  // });
+
+  button.addEventListener("click", lidToggle)
+
 
   return backpackArticle;
-});
+})
+
+
 
 const main = document.querySelector(".maincontent");
 
